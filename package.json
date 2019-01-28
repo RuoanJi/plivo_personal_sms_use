@@ -1,0 +1,29 @@
+{
+  "name": "plivo_personal_sms_use",
+  "version": "1.0.0",
+  "description": "A nodejs web UI for personal plivo SMS use.",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/RuoanJi/plivo_personal_sms_use.git"
+  },
+  "keywords": [
+    "plivo",
+    "nodejs"
+  ],
+  "author": "RuoanJi",
+  "license": "BSD-2-Clause",
+  "bugs": {
+    "url": "https://github.com/RuoanJi/plivo_personal_sms_use/issues"
+  },
+  "dependencies": {
+    "node-json-db": "=0.9.2",
+    "express": "=4.16.4",
+    "app-settings": "=1.0.0",
+    "body-parser": "=1.18.3",
+    "plivo": "=4.0.5"
+  }
+}
