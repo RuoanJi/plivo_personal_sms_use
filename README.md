@@ -24,11 +24,15 @@ npm start
 3. Get a number from Plivo
 4. Assign the XML application to your number
 
-# Use
+# Usage
 1. Receive SMS
+```
 http://<your-domain|your-ip>:<port>/plivo/view_sms/<your-plivo-number>
+```
 2. Send SMS
+```
 http://<your-domain|your-ip>:<port>/plivo/send_sms
+```
 
 # Future Plan
 * Multiple datasource support
