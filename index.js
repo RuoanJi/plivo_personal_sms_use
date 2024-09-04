@@ -21,6 +21,9 @@ app.get('/plivo/view_sms/:number', function(req, res) {
 
 	var htmlString = '<html><head></head><body>';
 
+	htmlString += '<button onclick="location.href=\'/plivo/send_sms?from=' + req.params.number + '\'">Send SMS</button>';
+	htmlString += '<button onclick="if(confirm(\'Delete all SMS for this number?\')) fetch(\'/plivo/delete_sms/' + req.params.number + '\', {method:\'POST\'}).then(() => {location.reload();})">Delete All SMS</button>';
+
 	htmlString += '<table border="1px"><tr><th>From</th><th>Text</th><th>Date</th></tr>';
 	for (var i = 0; i < messages.length; i ++) {
 		var message = messages[i];
@@ -62,9 +65,9 @@ app.get('/plivo/send_sms', function(req, res) {
 		</head>
 		<body>
 			<form action="/plivo/send_sms" method="POST">
-				From: <input name="from"></input><br />
-				To: <input name="to"></input><br />
-				Text: <input name="text"></input><br />
+				From: <input name="from" value="${req.query.from || ''}"></input><br />
+				To: <input name="to" value="${req.query.to || ''}"></input><br />
+				Text: <input name="text" value="${req.query.text || ''}"></input><br />
 				<input type="submit"></input>
 			</form>
 		</body>
@@ -77,6 +80,11 @@ app.post('/plivo/send_sms', function(req, res) {
 	plivoClient.messages.create(req.body.from, req.body.to, req.body.text).then(function() {
 	});
 	res.redirect('/plivo/send_sms');
+})
+
+app.post('/plivo/delete_sms/:number', function(req, res) {
+	db.delete('/plivo/n' + req.params.number);
+	res.send('');	
 })
 
 app.listen(settings.server.port, function() {
